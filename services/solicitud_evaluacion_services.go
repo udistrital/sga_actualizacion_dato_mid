@@ -831,7 +831,7 @@ func DatosSolicitud(id_solicitud string) (APIResponseDTO requestresponse.APIResp
 	resultado = make(map[string]interface{})
 	var alerta models.Alert
 	var errorGetAll bool
-	alertas := append([]interface{}{})
+	alertas := []interface{}{}
 
 	errSolicitud := request.GetJson("http://"+beego.AppConfig.String("SolicitudDocenteService")+"solicitud/"+id_solicitud, &Solicitud)
 	if errSolicitud == nil {
@@ -893,7 +893,7 @@ func SolicitudEvolucion(data []byte) (APIResponseDTO requestresponse.APIResponse
 	resultado = make(map[string]interface{})
 	var alerta models.Alert
 	var errorGetAll bool
-	alertas := append([]interface{}{})
+	alertas := []interface{}{}
 
 	if err := json.Unmarshal(data, &Solicitud); err == nil {
 		if respuesta := SolicitudEstadoPostSolicitud(&resultado, &SolicitudEvolucionEstadoPost, &SolicitudAux, EstadoTipoSolicitudId, &SolicitudAuxPost, Solicitud, &ObservacionPost, &errorGetAll, &alerta, &alertas, &SolicitudAprob, &Tercero, &TerceroPut, &DatosIdentificacion, &DatosIdentificacionPut, &DatosIdentificacionPost, &SolicitudEvolucionEstado); respuesta != nil {
@@ -922,7 +922,7 @@ func SolicitudActualizacionDatos(id_estado_tipo_sol string) (APIResponseDTO requ
 	resultado = make(map[string]interface{})
 	var alerta models.Alert
 	var errorGetAll bool
-	alertas := append([]interface{}{})
+	alertas := []interface{}{}
 
 	if resp := ManejoSolicitudesGetAll(&Solicitudes, Observacion, &respuesta, &TipoSolicitud, &Estado, &errorGetAll, &alertas, &alerta, id_estado_tipo_sol, &resultado); resp != nil {
 		APIResponseDTO = requestresponse.APIResponseDTO(false, 404, nil, resp)
@@ -942,7 +942,7 @@ func GetDatosSolicitud(id_persona string, id_estado_tipo_solicitud string) (APIR
 	resultado = make(map[string]interface{})
 	var alerta models.Alert
 	var errorGetAll bool
-	alertas := append([]interface{}{})
+	alertas := []interface{}{}
 
 	if respuesta := SolicitudGetDatos(&resultado, &TipoDocumentoGet, &errorGetAll, &alertas, &alerta, id_persona, id_estado_tipo_solicitud, &Solicitudes); respuesta != nil {
 		APIResponseDTO = requestresponse.APIResponseDTO(false, 404, nil, respuesta)
@@ -964,7 +964,7 @@ func GetSolictudActualizacion(id_persona string) (APIResponseDTO requestresponse
 	resultado = make(map[string]interface{})
 	var alerta models.Alert
 	var errorGetAll bool
-	alertas := append([]interface{}{})
+	alertas := []interface{}{}
 
 	if respuesta := ManejoSolicitudesGetActualizacion(&Solicitudes, id_persona, &respuesta, &TipoSolicitud, &Estado, &errorGetAll, &alertas, &alerta, &resultado); respuesta != nil {
 		APIResponseDTO = requestresponse.APIResponseDTO(false, 404, nil, respuesta)
@@ -989,7 +989,7 @@ func ActualizacionDatosPost(data []byte) (APIResponseDTO requestresponse.APIResp
 	resultado = make(map[string]interface{})
 	var alerta models.Alert
 	var errorGetAll bool
-	alertas := append([]interface{}{})
+	alertas := []interface{}{}
 
 	if err := json.Unmarshal(data, &Solicitud); err == nil {
 		if respuesta := ManejoSolicitudesPostActualizacion(IdEstadoTipoSolicitud, &SolicitudEvolucionEstadoPost, &resultado, &SolicitantePost, &errorGetAll, &alertas, &alerta, &SolicitudPost, Solicitud, Referencia, &SolicitudPadre); respuesta != nil {
