@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "beego Test API",
-        "description": "beego has a very cool tools to autogenerate documents for your API",
+        "title": "Microservicio SGA MID - Solicitudes de Evaluación",
+        "description": "Microservcio del SGA MID para solicitudes de actualización de datos - evaluación",
         "version": "1.0.0",
         "termsOfService": "http://beego.me/",
         "contact": {
@@ -15,154 +15,10 @@
     },
     "basePath": "/v1",
     "paths": {
-        "/solicitud_evaluacion/consultar_solicitud/solicitud/{id_solicitud}": {
-            "get": {
-                "tags": [
-                    "solicitud_evaluacion"
-                ],
-                "description": "Consultar los datos ingresados por el estudiante en su solicitud consultando por id de la solicitud",
-                "operationId": "SolicitudEvaluacionController.GetDatosSolicitudById",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id_solicitud",
-                        "description": "Id de la solicitud",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{}"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/solicitud_evaluacion/consultar_solicitud/{id_persona}": {
-            "get": {
-                "tags": [
-                    "solicitud_evaluacion"
-                ],
-                "description": "Consultar la solicitudes de un estudiante de actualización de datos",
-                "operationId": "SolicitudEvaluacionController.GetSolicitudActualizacionDatos",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id_persona",
-                        "description": "Id del estudiante",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{}"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/solicitud_evaluacion/consultar_solicitud/{id_persona}/{id_estado_tipo_solicitud}": {
-            "get": {
-                "tags": [
-                    "solicitud_evaluacion"
-                ],
-                "description": "Consultar los datos ingresados por el estudiante en su solicitud",
-                "operationId": "SolicitudEvaluacionController.GetDatosSolicitud",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id_persona",
-                        "description": "Id del estudiante",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    },
-                    {
-                        "in": "path",
-                        "name": "id_estado_tipo_solicitud",
-                        "description": "Id del estado del tipo de solictud",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{}"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/solicitud_evaluacion/consultar_solicitudes/{id_estado_tipo_sol}": {
-            "get": {
-                "tags": [
-                    "solicitud_evaluacion"
-                ],
-                "description": "Consultar todas la solicitudes de actualización de datos",
-                "operationId": "SolicitudEvaluacionController.GetAllSolicitudActualizacionDatos",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id_estado_tipo_sol",
-                        "description": "Id del estado tipo solicitud",
-                        "required": true,
-                        "type": "integer",
-                        "format": "int64"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{}"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/solicitud_evaluacion/registrar_evolucion": {
+        "/solicitudes/": {
             "post": {
                 "tags": [
-                    "solicitud_evaluacion"
-                ],
-                "description": "Agregar una evolucion del estado a la solicitud planteada",
-                "operationId": "SolicitudEvaluacionController.PostSolicitudEvolucionEstado",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body Agregar una evolucion del estado a la solicitud planteada content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/{}"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{}"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/solicitud_evaluacion/registrar_solicitud": {
-            "post": {
-                "tags": [
-                    "solicitud_evaluacion"
+                    "solicitudes"
                 ],
                 "description": "Agregar una solicitud de actualizacion de datos(ID o nombre)",
                 "operationId": "SolicitudEvaluacionController.PostSolicitudActualizacionDatos",
@@ -187,13 +43,193 @@
                 }
             }
         },
-        "/solicitud_evaluacion/{id}": {
+        "/solicitudes/estados/{id_estado_tipo_solicitud}": {
             "get": {
                 "tags": [
-                    "solicitud_evaluacion"
+                    "solicitudes"
+                ],
+                "description": "Consultar todas la solicitudes de actualización de datos",
+                "operationId": "SolicitudEvaluacionController.GetAllSolicitudActualizacionDatos",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id_estado_tipo_solicitud",
+                        "description": "Id del estado tipo solicitud",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{}"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/solicitudes/estudiantes/{id_tercero}": {
+            "get": {
+                "tags": [
+                    "solicitudes"
+                ],
+                "description": "Consultar la solicitudes de un estudiante de actualización de datos",
+                "operationId": "SolicitudEvaluacionController.GetSolicitudActualizacionDatos",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id_tercero",
+                        "description": "Id del estudiante",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{}"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/solicitudes/estudiantes/{id_tercero}/estados/{id_estado_tipo_solicitud}": {
+            "get": {
+                "tags": [
+                    "solicitudes"
+                ],
+                "description": "Consultar los datos ingresados por el estudiante en su solicitud",
+                "operationId": "SolicitudEvaluacionController.GetDatosSolicitud",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id_tercero",
+                        "description": "Id del estudiante",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "path",
+                        "name": "id_estado_tipo_solicitud",
+                        "description": "Id del estado del tipo de solictud",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{}"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/solicitudes/evoluciones": {
+            "post": {
+                "tags": [
+                    "solicitudes"
+                ],
+                "description": "Agregar una evolucion del estado a la solicitud planteada",
+                "operationId": "SolicitudEvaluacionController.PostSolicitudEvolucionEstado",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body Agregar una evolucion del estado a la solicitud planteada content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/{}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{}"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/solicitudes/{id_solicitud}": {
+            "get": {
+                "tags": [
+                    "solicitudes"
+                ],
+                "description": "Consultar los datos ingresados por el estudiante en su solicitud consultando por id de la solicitud",
+                "operationId": "SolicitudEvaluacionController.GetDatosSolicitudById",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id_solicitud",
+                        "description": "Id de la solicitud",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{}"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "solicitudes"
+                ],
+                "description": "Modifica una solicitud existente",
+                "operationId": "SolicitudEvaluacionController.PutSolicitud",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body Modificar solicitud content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/{}"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{}"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/solicitudes/{id}/evaluacion": {
+            "get": {
+                "tags": [
+                    "solicitudes"
                 ],
                 "description": "actualiza de forma publica el estado de una solicitud tipo evaluacion",
                 "operationId": "SolicitudEvaluacionController.PutSolicitudEvaluacion",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "Id de la solicitud",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "{}"
@@ -213,7 +249,7 @@
     },
     "tags": [
         {
-            "name": "solicitud_evaluacion",
+            "name": "solicitudes",
             "description": "SolicitudEvaluacionController ...\n"
         }
     ]
